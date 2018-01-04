@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <date>2018-01-05</date>
+</articleinfo>
+<section id="_asciidoc_to_markdown">
+<title>asciidoc to markdown</title>
+<simpara>ググったけど結局いい感じのものが見つからなかったので、自分用のメモを兼ねて。
+asciidocをmarkdownに変換しようとしてハマった話です。Linuxは参考にした記事を、Macはこの記事を参考にすることで解決の糸口になるかもしれませんが、Windowsは検証する環境が現在無いため、わかりません。。。あしからず。</simpara>
+<section id="_tl_dr">
+<title>TL;DR</title>
+<itemizedlist>
+<listitem>
+<simpara>
+ココ見て<ulink url="https://tinyapps.org/blog/nix/201701240700_convert_asciidoc_to_markdown.html">Convert asciidoc to markdown</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<literal>pandoc</literal>, <literal>asciidoc</literal> をインストールする
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+asciidocのコマンドでdocbookに変換したら、docbookをpandocでmarkdownに変換する
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_背景">
+<title>背景</title>
+<simpara>少し周りで<ulink url="http://asciidoc.org/">asciidoc</ulink>の話を聞いてみたので実際に試してみようと思い、ブログ記事をかき始めた。
+ブログサービスではmarkdownをサポートしているため、変換する必要があった。</simpara>
+<simpara>そこで<ulink url="https://pandoc.org/">Pandoc</ulink>でサクッと変換してブログ記事の記載を完了… する予定だったのだが、pandocではインプットするソースファイルにasciidocの形式のファイルが取れないことがわかった。<footnote><simpara>pandoc公式ページに表示されている状態遷移図っぽいのがそれで、入力となる左側には確かにasciidocが存在していない</simpara></footnote></simpara>
+<simpara>そこで変換する方法を調べた…。</simpara>
+</section>
+<section id="_参考にした記事">
+<title>参考にした記事</title>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="https://tinyapps.org/blog/nix/201701240700_convert_asciidoc_to_markdown.html">Convert asciidoc to markdown - tinyapps.org</ulink>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+最終的にココを見て解決しました
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="https://stackoverflow.com/questions/26430433/convert-asciidoc-to-markdown">Convert asciidoc to markdown - stackoverflow</ulink>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+最初の方に見ていたページ。まさかこんなめんどくさいとは思わなかった…。
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_手順">
+<title>手順</title>
+<simpara>上記、参考記事の手順2までとほぼ同様の操作になる。</simpara>
+<variablelist>
+<varlistentry>
+<term>
+<literal>pandoc</literal> と <literal>asciidoc</literal> をインストールする 
+</term>
+<term>
+Macの場合(brewを使う) 
+</term>
+<listitem>
+<simpara>
+        <literal>brew install pandoc asciidoc</literal>
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Linuxの場合 
+</term>
+<listitem>
+<simpara>
+        <literal>sudo apt install pandoc asciidoc</literal>
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+asciidocでpandoc形式に変換する(ココで生成されるarticle.xmlがdocbook) 
+</term>
+<listitem>
+<simpara>
+    <literal>asciidoc -b docbook article.adoc</literal>
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+pandocでmarkdown形式に変換する 
+</term>
+<listitem>
+<simpara>
+    <literal>pandoc -f docbook -t markdown_strict article.xml -o article.md</literal>
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>大変すぎる！</simpara>
+</section>
+<section id="_shellにしとく">
+<title>shellにしとく</title>
+<formalpara><title>convert.sh</title><para>
+<programlisting language="shell" linenumbering="unnumbered">#!/bin/sh
+asciidoc -b docbook $1.adoc
+pandoc -f docbook -t markdown_strict $1.xml -o $1.md
+pandoc -f docbook -t html $1.xml &gt; $1.html # 後述するHTML出力</programlisting>
+</para></formalpara>
+<simpara>これで <literal>./convert.sh article</literal> とかで叩けば良いのでは、と思いました。</simpara>
+</section>
+<section id="_余談">
+<title>余談</title>
+<simpara>docbook に変換できれば他に変換するのは容易いっぽい。
+例えば、htmlに変換する場合は下記のコマンドで一発。</simpara>
+<formalpara><title>convert_html.sh</title><para>
+<programlisting language="shell" linenumbering="unnumbered">pandoc -f docbook -t html $1.xml &gt; $1.html</programlisting>
+</para></formalpara>
+<simpara>参考記事：<ulink url="https://qiita.com/m_ohsumi/items/cea1243e106ababd15e7">Pandocを使ってMarkdownを整形されたHTMLに変換する</ulink></simpara>
+</section>
+<section id="_終わりに">
+<title>終わりに</title>
+<simpara>日本語の記事が少なくて苦しかったのでまとめてみた。
+asciidoc、表現幅は広そうだなと思うのですが、まだまだ使いこなすには鍛錬が必要そう。</simpara>
+<simpara>なお、この記事もasciidocを変換し、markdownにした記事になります。
+参考までこんな感じの変換に。<footnote><simpara>流石にqiitaに上げるときは画像リンクを差し替えていますがw</simpara></footnote></simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="images/asciidoc.png"/>
+  </imageobject>
+  <textobject><phrase>asciidocばーじょん</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="images/markdown.png"/>
+  </imageobject>
+  <textobject><phrase>markdownへんかんごばーじょん</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+</section>
+</article>

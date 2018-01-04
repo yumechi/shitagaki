@@ -1,0 +1,64 @@
+<h1 id="_asciidoc_to_markdown">asciidoc to markdown</h1>
+<p>ググったけど結局いい感じのものが見つからなかったので、自分用のメモを兼ねて。 asciidocをmarkdownに変換しようとしてハマった話です。Linuxは参考にした記事を、Macはこの記事を参考にすることで解決の糸口になるかもしれませんが、Windowsは検証する環境が現在無いため、わかりません。。。あしからず。</p>
+<h2 id="_tl_dr">TL;DR</h2>
+<ul>
+<li><p>ココ見て<a href="https://tinyapps.org/blog/nix/201701240700_convert_asciidoc_to_markdown.html">Convert asciidoc to markdown</a></p></li>
+<li><p><code>pandoc</code>, <code>asciidoc</code> をインストールする</p></li>
+<li><p>asciidocのコマンドでdocbookに変換したら、docbookをpandocでmarkdownに変換する</p></li>
+</ul>
+<h2 id="_背景">背景</h2>
+<p>少し周りで<a href="http://asciidoc.org/">asciidoc</a>の話を聞いてみたので実際に試してみようと思い、ブログ記事をかき始めた。 ブログサービスではmarkdownをサポートしているため、変換する必要があった。</p>
+<p>そこで<a href="https://pandoc.org/">Pandoc</a>でサクッと変換してブログ記事の記載を完了… する予定だったのだが、pandocではインプットするソースファイルにasciidocの形式のファイルが取れないことがわかった。<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>そこで変換する方法を調べた…。</p>
+<h2 id="_参考にした記事">参考にした記事</h2>
+<ul>
+<li><p><a href="https://tinyapps.org/blog/nix/201701240700_convert_asciidoc_to_markdown.html">Convert asciidoc to markdown - tinyapps.org</a></p>
+<ul>
+<li><p>最終的にココを見て解決しました</p></li>
+</ul></li>
+<li><p><a href="https://stackoverflow.com/questions/26430433/convert-asciidoc-to-markdown">Convert asciidoc to markdown - stackoverflow</a></p>
+<ul>
+<li><p>最初の方に見ていたページ。まさかこんなめんどくさいとは思わなかった…。</p></li>
+</ul></li>
+</ul>
+<h2 id="_手順">手順</h2>
+<p>上記、参考記事の手順2までとほぼ同様の操作になる。</p>
+<dl>
+<dt><code>pandoc</code> と <code>asciidoc</code> をインストールする; Macの場合(brewを使う)</dt>
+<dd><p><code>brew install pandoc asciidoc</code></p>
+</dd>
+<dt>Linuxの場合</dt>
+<dd><p><code>sudo apt install pandoc asciidoc</code></p>
+</dd>
+<dt>asciidocでpandoc形式に変換する(ココで生成されるarticle.xmlがdocbook)</dt>
+<dd><p><code>asciidoc -b docbook article.adoc</code></p>
+</dd>
+<dt>pandocでmarkdown形式に変換する</dt>
+<dd><p><code>pandoc -f docbook -t markdown_strict article.xml -o article.md</code></p>
+</dd>
+</dl>
+<p>大変すぎる！</p>
+<h2 id="_shellにしとく">shellにしとく</h2>
+<p><strong>convert.sh.</strong></p>
+<pre class="shell"><code>#!/bin/sh
+asciidoc -b docbook $1.adoc
+pandoc -f docbook -t markdown_strict $1.xml -o $1.md
+pandoc -f docbook -t html $1.xml &gt; $1.html # 後述するHTML出力</code></pre>
+<p>これで <code>./convert.sh article</code> とかで叩けば良いのでは、と思いました。</p>
+<h2 id="_余談">余談</h2>
+<p>docbook に変換できれば他に変換するのは容易いっぽい。 例えば、htmlに変換する場合は下記のコマンドで一発。</p>
+<p><strong>convert_html.sh.</strong></p>
+<pre class="shell"><code>pandoc -f docbook -t html $1.xml &gt; $1.html</code></pre>
+<p>参考記事：<a href="https://qiita.com/m_ohsumi/items/cea1243e106ababd15e7">Pandocを使ってMarkdownを整形されたHTMLに変換する</a></p>
+<h2 id="_終わりに">終わりに</h2>
+<p>日本語の記事が少なくて苦しかったのでまとめてみた。 asciidoc、表現幅は広そうだなと思うのですが、まだまだ使いこなすには鍛錬が必要そう。</p>
+<p>なお、この記事もasciidocを変換し、markdownにした記事になります。 参考までこんな感じの変換に。<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p><img src="images/asciidoc.png" alt="asciidocばーじょん" /></p>
+<p><img src="images/markdown.png" alt="markdownへんかんごばーじょん" /></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>pandoc公式ページに表示されている状態遷移図っぽいのがそれで、入力となる左側には確かにasciidocが存在していない<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>流石にqiitaに上げるときは画像リンクを差し替えていますがw<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
