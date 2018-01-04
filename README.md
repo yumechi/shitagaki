@@ -1,2 +1,0 @@
-# shitagaki
-asciidocの練習
