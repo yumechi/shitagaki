@@ -88,7 +88,3 @@ rating: 1475
 
 ----
 
-[source,python]
-----
-include::../../../python_practice/study/max_test/max_test.py[]
-----
