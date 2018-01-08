@@ -1,0 +1,90 @@
+== Pythonのmax, min関数はKey指定による最大値、最小値を取得できる
+
+題名の通りなのですが、最近これやれることに気がついたので備忘録としてメモ。何処かで使うタイミングがあればいいが…（競技プログラミングで使う機会はほぼなさそうだけど… クラスをそもそも使わないので… しかしオブジェクトを定義してほげほげする問題が仮に出たとしたら需要があるかも？）
+
+[source,python,numbered]
+----
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+class Human():
+
+    def __init__(self, data):
+        self.name = data.get('name', 'No name man')
+        self.age = data.get('age', 0)
+        self.rating = data.get('rating', 0)
+
+    def __str__(self):
+        information = ''
+        information += 'name: {0}\n'.format(self.name)
+        information += 'age: {0}\n'.format(self.age)
+        information += 'rating: {0}\n'.format(self.rating)
+        return information
+
+
+def run():
+    init_data = [
+        {'name': 'yumechi', 'age': 2_0000_0000, 'rating': 1200},
+        {'name': 'umechi',  'age': 17, 'rating': 1475},
+        {'name': 'bomechi', 'age': 63, 'rating': 953},
+        {'name': 'amechi',  'age': 40, 'rating': 18},
+        {'name': 'umechi',  'age': 23, 'rating': 1890},
+        {'name': 'kamechi', 'age': 95, 'rating': 20000},
+    ]
+
+    humans = []
+    for elem in init_data:
+        humans.append(Human(elem))
+
+    # if you add no key, python raise exception
+    # keyを設定しないと例外が発生する
+    # noinfo_max_human = max(humans)
+
+    max_rating_human = max(humans, key=lambda human: human.rating)
+    print('max rating human') 
+    print(max_rating_human)
+
+    min_rating_human = min(humans, key=lambda human: human.rating)
+    print('min rating human')
+    print(min_rating_human)
+
+    max_age_human = max(humans, key=lambda human: human.age)
+    print('max age human') 
+    print(max_age_human)
+
+    min_age_human = min(humans, key=lambda human: human.age)
+    print('min age human')
+    print(min_age_human)
+
+
+if __name__ == "__main__":
+    run()
+----
+
+実行結果こんな感じ
+
+[source,text]
+----
+max rating human
+name: kamechi
+age: 95
+rating: 20000
+
+min rating human
+name: amechi
+age: 40
+rating: 18
+
+max age human
+name: yumechi
+age: 200000000
+rating: 1200
+
+min age human
+name: umechi
+age: 17
+rating: 1475
+
+----
+
