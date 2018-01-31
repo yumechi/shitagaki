@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <date>2018-02-01</date>
+</articleinfo>
+<section id="_2018_01_21_01_27_の振り返り">
+<title>2018, 01/21 〜 01/27 の振り返り</title>
+<simpara>第2回振り返りです。無限に日曜日に振り返ろうとして失敗する。
+あと昨日が時差出勤だったせいか、生活リズムがズレていて結構まずいです。</simpara>
+<section id="_プログラミング">
+<title>プログラミング</title>
+<simpara>これルールも受けたほうが良さそう。仕事をW, 趣味プロをH、競技プログラミングをCにしようと思う。</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Keep
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+W1. 1機能ずつシステムを理解し始めた
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+これまでよりチケット消化早くなった感じ
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+H1. サポーターズ様で登壇した
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+キャリアとかの話を中心にした。早いところ記事にまとめる。
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+そろそろ転職エントリーも視野か。
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Problem
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+W1: もう少し監視周りを理解せねば…
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+H1: 作りたいモノノ機能だしを早くやるべし
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+C1: 参加したコンテストについてブログを書くこと、復習をすることが不足している
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Try
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+W1: 自分から調査を引き受けてみよう
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+H1: 幾つかのアイディアがあるが、そのうちの1つについては基本機能を書き出して、アーキテクチャを考える
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+C1: 3日以内に実施するスケジュールを習慣づける
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_創作">
+<title>創作</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Keep
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1. 技術書典申込
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+競技プログラミング本を出すことで決定
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Problem
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: コミケの申込
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A2：アウトプット量が少なすぎる
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Try
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: 申込計画を立てる。誰と、何で出るか。
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A2: 平日5日で1枚、休日1枚のペースを作る。そもそもインプットを増やすべき。
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_ゲーム">
+<title>ゲーム</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Keep
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1. 初めてスプラトゥーン2でリグマ、プラベやった
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+ソロのときと立ち回り変えないとね
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Problem
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+B1: 音楽ゲームサボりすぎ疑惑
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Try
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+B1: 神曲を埋めつつ、スコアをあげる。
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_その他">
+<title>その他</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Keep
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1. 資格試験勉強の記録をつけ始めた
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+電車の移動時間だけだけど、それなりに勉強している気になっている
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Problem
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: 問題を解いていない
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A2: 他資格をいつ勉強するか
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A3: 企画をいろいろ考えているが、動けていない
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Try
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: 1週間に1章づつでもいいので、勉強をして問題を解く
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A2: 年内の具体的なスケジュールをやる
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A3: 企画書作って、告知をしましょう
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section id="_まとめ">
+<title>まとめ</title>
+<itemizedlist>
+<listitem>
+<simpara>
+やっぱりスタック課題みたいなものを作っておかないとサボる
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+回避方法としてGithubにひたすらやることのissueを追加してはいるが、微妙
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<simpara>ちょっと眠いのと、MM提出し忘れると嫌なので、そろそろ寝ます。</simpara>
+</section>
+</article>
