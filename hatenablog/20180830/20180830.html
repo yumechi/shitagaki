@@ -1,0 +1,94 @@
+<h1 id="_arc_101_の感想">ARC 101 の感想</h1>
+<p>1完だった。2問目D問題の700点は手も足も出ずだったけど、なんか典型的なアルゴリズムが組み合わさった問題らしいので後で解く。</p>
+<h2 id="_c_candles">C - Candles</h2>
+<p><a href="https://arc101.contest.atcoder.jp/tasks/arc101_a">C - Candles</a></p>
+<p>N本のろうそくを連続するK個ずつ見て、どの区間が最短かを見る。</p>
+<p>K個見る際は、符号の反転に要注意。マイナスからプラスに変わる場合と、プラスからマイナスに変わる場合があるが、プラス、マイナスの一番絶対値の大きい値から折り返してもう1つの符号を見るような形になる。</p>
+<p>実装自体は割と早く思いつくものの、無限にバグらせてしまい、90分位かかってしまったので、流石に自分で組んでいて呆れた。(最初のSubmit時点で上がらないことがわかりきっていたので、コンテスト座ったままのほうがレート的には優しかったが、まあ、そんな事を言っていると一生コンテストから逃げるので最後までやることにした)</p>
+<p>ちなみに条件式をもう少し簡潔に書けるとのことなので、下記の方法は微妙（あと似たようなループをもう一つ書いていてその名残で <code>i &lt; 0</code> などという変な条件が入っていたりするので、通るけど真似はしないほうがいいという話。その時書いていたコードをそのまま残したいので、そのまま貼る）。ちなみに私は0が入ったときはカウントを減らすような処理にし、リストから削除している。</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">#!/usr/bin/env python</span>
+<span class="co"># -*- coding: utf-8 -*-</span>
+
+<span class="im">import</span> bisect
+
+
+<span class="kw">def</span> solve():
+    n, k <span class="op">=</span> <span class="bu">map</span>(<span class="bu">int</span>, <span class="bu">input</span>().split())
+    al <span class="op">=</span> [<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">input</span>().split()]
+
+    ans <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">abs</span>(i) <span class="cf">for</span> i <span class="kw">in</span> al)
+    flag0 <span class="op">=</span> <span class="dv">0</span> <span class="kw">in</span> al
+    <span class="cf">if</span> flag0:
+        k <span class="op">-=</span> <span class="dv">1</span>
+        n <span class="op">-=</span> <span class="dv">1</span>
+        <span class="cf">if</span> k <span class="op">==</span> <span class="dv">0</span>:
+            <span class="bu">print</span>(<span class="dv">0</span>)
+            <span class="cf">return</span>
+        al.remove(<span class="dv">0</span>)
+    nc <span class="op">=</span> bisect.bisect_left(al, <span class="dv">0</span>)
+    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):
+        <span class="cf">if</span> i <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> i <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span> <span class="op">&gt;=</span> n:
+            <span class="cf">break</span>
+        <span class="cf">if</span> al[i] <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">and</span> al[i <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span>] <span class="op">&lt;</span> <span class="dv">0</span>:
+            t1 <span class="op">=</span> <span class="bu">abs</span>(al[i])
+        <span class="cf">else</span>:
+            t1 <span class="op">=</span> <span class="bu">min</span>(<span class="bu">abs</span>(al[i]) <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="bu">abs</span>(al[i <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span>]),
+                     <span class="bu">abs</span>(al[i]) <span class="op">+</span> <span class="bu">abs</span>(al[i <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span>]) <span class="op">*</span> <span class="dv">2</span>)
+        <span class="cf">if</span> al[i] <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> al[i <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:
+            t2 <span class="op">=</span> <span class="bu">abs</span>(al[i <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span>])
+        <span class="cf">else</span>:
+            t2 <span class="op">=</span> <span class="bu">min</span>(<span class="bu">abs</span>(al[i]) <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="bu">abs</span>(al[i <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span>]),
+                     <span class="bu">abs</span>(al[i]) <span class="op">+</span> <span class="bu">abs</span>(al[i <span class="op">+</span> k <span class="op">-</span> <span class="dv">1</span>]) <span class="op">*</span> <span class="dv">2</span>)
+        t <span class="op">=</span> <span class="bu">min</span>(t1, t2)
+        ans <span class="op">=</span> <span class="bu">min</span>(ans, t)
+    <span class="bu">print</span>(ans)
+
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:
+    solve()</code></pre></div>
+<h2 id="_併設_abc_107の問題とか">併設 ABC 107の問題とか</h2>
+<h3 id="_a_train">A - Train</h3>
+<p><a href="https://abc107.contest.atcoder.jp/tasks/abc107_a">A - Train</a></p>
+<p>単純に <code>(n - i + 1)</code> を出すだけ。</p>
+<h3 id="_b_grid_compression">B - Grid Compression</h3>
+<p><a href="https://abc107.contest.atcoder.jp/tasks/abc107_b">B - Grid Compression</a></p>
+<p>いろいろやり方はあると思うけど、消せるラインかどうか見て、消せるラインなら入力テーブルと同じ大きさのフラグだけ持つテーブルのフラグをいじる。フラグがTrueのものだけ出力するようにする感じ。</p>
+<p>結局見ていくと、縦横の <code>.</code> のカウントを見て、縦横の長さと一致していたら出力しないという形にできるので、それで良いんじゃなかろうか。</p>
+<p>珍しくC<code>を書いた。（そろそろC</code>を書けみたいな圧が多くて辛い）</p>
+<div class="sourceCode"><pre class="sourceCode c++"><code class="sourceCode cpp"><span class="dt">int</span> main() {
+  cin.tie(<span class="dv">0</span>);
+  ios::sync_with_stdio(<span class="kw">false</span>);
+  cout.precision(<span class="dv">16</span>);
+
+  <span class="dt">int</span> h, w;
+  cin &gt;&gt; h &gt;&gt; w;
+
+  string table[h];
+  vector&lt;<span class="dt">int</span>&gt; wv(w);
+  vector&lt;<span class="dt">int</span>&gt; hv(h);
+  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; h; i++) {
+    cin &gt;&gt; table[i];
+    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; w; j++) {
+      wv[j] += table[i][j] == <span class="st">&#39;.&#39;</span> ? <span class="dv">1</span> : <span class="dv">0</span>;
+      hv[i] += table[i][j] == <span class="st">&#39;.&#39;</span> ? <span class="dv">1</span> : <span class="dv">0</span>;
+    }
+  }
+
+  <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; h; i++) {
+    string s = <span class="st">&quot;&quot;</span>;
+    <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; w; j++) {
+      <span class="cf">if</span> (hv[i] != w &amp;&amp; wv[j] != h) {
+        s += table[i][j];
+      }
+    }
+    <span class="cf">if</span> (!s.empty()) {
+      cout &lt;&lt; s &lt;&lt; endl;
+    }
+  }
+
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<h2 id="_感想">感想</h2>
+<p>今の自分の実力だと、300点問題は20分以内には解けていないと多分だめなレベルで、考察、コーディング速度の両面を鍛えないといけないなという気持ちになった。</p>
+<p>あとB問題もC問題も最初考えて通したロジックをよく見ると、かなり余計なコードやロジック、処理が入っていてそれを簡潔な形で書けた、となったのは見返していてよかったなと思える点だが、やっぱりそれもコンテスト中に出来ないと険しいな、という気持ちになった。</p>
+<p>D問題はある程度C<code>書けるようになってから戻ってきて解いたほうが良さそう。今は放置。(自分の直感とC</code>の実装は結構ずれているような感じがして、コンパイル代わりと通らなくて辛い見たいな気持ちになりがちで、業務で使うわけでもないC++を書くモチベーションがなかなか上がらない。Rustを学びながら書くのはありだけど、まだRustで競技プログラミングするほど知識がないので、多分、無理)</p>
