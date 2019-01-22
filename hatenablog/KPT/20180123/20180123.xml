@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <date>2018-01-23</date>
+</articleinfo>
+<section id="_2018_01_15_01_20_の振り返り">
+<title>2018, 01/15 〜 01/20 の振り返り</title>
+<simpara>とりあえず第一回の振り返りをしてみようと思う。
+本当は日曜日に書くべきだたんだけどなあ、書けなかったなあ。</simpara>
+<section id="_プログラミング">
+<title>プログラミング</title>
+<simpara>これルールも受けたほうが良さそう。仕事をW, 趣味プロをH、競技プログラミングをCにしようと思う。</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Keep
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+W1. 各種ツールの見方を覚える
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+サーバーサイドエンジニアなので、通信状況とかを見ている
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+（これ前職だとありえなかったんだよなあ、なかなか新鮮）
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+H1. 作りたいものについてアイディア出しをした
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+やりたいなってところだけ
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+C1. CodeForces Div.2に参加
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Codecraft-18 and Codeforces Round #458 (Div. 1 + Div. 2, combined)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+2完、2092位、 1245 → 1320(+75)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+徐々にレーティング戻しつつある
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+C2. AtCoder Regular Contestに参加した
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+ARC089
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+1完、503位、1279  → 1304(+25)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+highest更新ではあるが、2完したかったのであまり納得は行っていない
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Problem
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+W1: 全体像がつかめないとバグ産みそう
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+H1: 機能概要の絞込やアイディアの公開がまだ
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+C1: 復習ができてない、振り返りブログを書いていない
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+C2: 復習ができてない、振り返りブログを書いていない
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Try
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+W1: 人に聞きながら調査をする方法を学ぶ、あるリクエストに対する分析を実施する
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+H1: 幾つかのアイディアがあるが、そのうちの1つについては基本機能を書き出して、アーキテクチャを考える
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+C1: C問題の復習とブログを書く
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+C2: D問題の復習とブログを書く
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_創作">
+<title>創作</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Keep
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1. 今年の各種イベントについて調べる
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+主なものの〆切を書いた
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+参加するもののスケジュールを決定
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+A2. 久々に落書きを書いた
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+おもったより腕が落ちてない
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Problem
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: 技術書典の申込がまだ
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A2：アウトプット量が少なすぎる
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Try
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: 申し込む（水曜日〆切）
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A2: 平日1枚、休日1枚のペースを作る。そもそもインプットを増やすべき。
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_ゲーム">
+<title>ゲーム</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Keep
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1. ガチアサリがA-になる
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+B1. チュウニズムのレーティングが伸びそうな雰囲気
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+1/13 にやった感じ、12と12+に伸びる傾向あり
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Problem
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: プレイ時間が増加しすぎている傾向
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+先週はほぼ毎日やっていた記憶がある
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+他作業とのバランスが取れない
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+B1: 代わりにbeatmaniaが停滞気味、非常に調子が悪い
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Try
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: スプラトゥーンに関してはプレイ時間を計測しても良い
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+B1: 一旦チュウニズムに集中して、beatmaniaは放置する。ホーム筐体の調子が悪そうなので、他の近場でプレイする。
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_その他">
+<title>その他</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Keep
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1. 資格試験の勉強をしている
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Problem
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: 想定より進んでいない
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+内容が難解であるため、今はマンガで学ぶ的なアレをやってる
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+ただ問題をある程度解かなければいけないという自覚はあるため、2月中をめどに終わりにしたい
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Try
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A1: 勉強時間を増やす、勉強時間を記録する
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section id="_まとめ">
+<title>まとめ</title>
+<itemizedlist>
+<listitem>
+<simpara>
+おもったより時間がかかる（1時間弱かかっている）
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+自分の場合はしばらく放置することについてスタックみたいな項目を追加したほうが良い
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+今回の場合であれば音楽ゲームはしばらく触らないと決めたので、音楽ゲームの目標は放置、みたいな
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+しばらくやらないことリストみたいなものを作ってそれで管理しても良い
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+（これをどう管理するべきというのもまたProblemだなあ、そして今これをやってますみたいなものは常に公開状態にしておきたい）
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<simpara>とりあえず1回目の振り返りはおしまい。つっかれたー。</simpara>
+</section>
+</article>

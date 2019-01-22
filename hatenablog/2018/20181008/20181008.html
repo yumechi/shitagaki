@@ -1,0 +1,62 @@
+<h1 id="_conohaと戯れてみる">Conohaと戯れてみる</h1>
+<p>仕事ではサーバーサイドのエンジニアとして働いているが、普段は完全に構築されて切った環境でぬくぬくと開発していることもあり、OS並びにミドルウェア、そしてWebAPIを構成する技術要素全般についてもう少し理解を深めるべきだと思った。</p>
+<p>そこでVPSでも借りて遊んでみることにした。</p>
+<p>選択肢としてはAWSとか、GCPとかあったけど、なんとなくConohaにした。キャラクターが可愛いっていうのもあるけど、普段自分が開発する範囲では、そのへんにある開発マシンをいじっていたりすることも多いので、その環境に近い感じにしておいた。</p>
+<p>物理マシンのサーバーを用意してやるのも選択肢ではあったけど、正直直近少しいじって見るだけだとサーバー用になにか買うのもコスト的にもったいないなとは思っていて、勉強するにしてもどっか借りる気ではいた。</p>
+<p>次に触るとしたらAWSかなーとは思う。でもEC2触るだけだと味気ないので、何かと組み合わせられないと考えにくいかなと。</p>
+<p>暇があったら物理的なサーバー立ててなんかするのもいいかなーとは思うけど、その頃にはもっとVPSでやれるサーバーが一般的になってそうだなーとか。</p>
+<h2 id="_契約周りとか">契約周りとか</h2>
+<p>公式ページに沿ってセットアップ。メモリ1GB、ディスク50GBのやつにした。月額980円ってすごいな？ OSはCentOS7系の最新版。</p>
+<p>ディスク意外とついてくるなという印象。</p>
+<p><a href="https://www.conoha.jp/guide/study-02.php" class="uri">https://www.conoha.jp/guide/study-02.php</a></p>
+<p>とはいえ、若干インターフェースは変わってるのでよく読んだほうが良さそうかも。</p>
+<h2 id="_ssh_confする">SSH Confする</h2>
+<p>この辺全く知らなかったので、勉強になった。</p>
+<p>これを参考にした。というかほぼこれ。</p>
+<p><a href="https://qiita.com/ongaeshi/items/bb17ebfbd4d22057c8fd" class="uri">https://qiita.com/ongaeshi/items/bb17ebfbd4d22057c8fd</a></p>
+<p>やることとしてはユーザーを作って、 <code>/etc/ssh/sshd_config</code> を編集していく。 PasswordAuthとか、Challengeとかを無効にしつつ、SSH認証するようにする。</p>
+<p>鍵を作ったり受け渡したりしてログインするところは普段、よしなに登録してもらっているので理解があんまりできておらず 、新鮮でした。</p>
+<h3 id="_他に参考にしたところとか">他に参考にしたところとか</h3>
+<p>大体 SSH Config系統。</p>
+<ul>
+<li><p><a href="http://tkm-71.hatenablog.com/entry/2016/03/20/153825" class="uri">http://tkm-71.hatenablog.com/entry/2016/03/20/153825</a></p></li>
+<li><p><a href="https://gentoo.reichsarchiv.jp/item/17" class="uri">https://gentoo.reichsarchiv.jp/item/17</a></p></li>
+<li><p><a href="https://dogmap.jp/2011/10/27/ssh_config/" class="uri">https://dogmap.jp/2011/10/27/ssh_config/</a></p></li>
+<li><p><a href="http://www.kmiura.net/archives/8619663.html" class="uri">http://www.kmiura.net/archives/8619663.html</a></p></li>
+</ul>
+<h2 id="_ndf_を導入する">ndf を導入する</h2>
+<p>yum に変わる新しいパッケージマネージャーとして dnf というものが存在する。これを入れていく。 参考にした記事はこちら。</p>
+<ul>
+<li><p><a href="http://www.trapping.xyz/2018/01/centos7dnf.html" class="uri">http://www.trapping.xyz/2018/01/centos7dnf.html</a></p></li>
+<li><p><a href="https://qiita.com/skanno/items/7ac41c7e6a12bcfcfed3" class="uri">https://qiita.com/skanno/items/7ac41c7e6a12bcfcfed3</a></p></li>
+</ul>
+<p>ちなみに <code>yum install dnf</code> で入らなかったので wget でパッケージを取ってきてインストールした。</p>
+<p>使い勝手はそんなに変わらないような気がする。</p>
+<h2 id="_git_を導入する">git を導入する</h2>
+<p>これは流石に常識として理解していたが <code>yum</code> や <code>apt</code> ではいる git は本当にバージョンが古い。なので、ビルドする。</p>
+<p>公式のドキュメントだけでOK。てか公式のドキュメント、 dnf でしか書いてない。はい、という感じだ。</p>
+<p><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" class="uri">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></p>
+<p>（これは仕事とかでも何回かビルドしたことがあったので、楽勝だった…）</p>
+<p>ちなみにCentOSは <code>db2x_docbook2texi</code> のシンボリックリンクをはらないとだめです。</p>
+<h2 id="_dockerを入れる">Dockerを入れる</h2>
+<p>公式ドキュメントに従う。</p>
+<p><a href="https://docs.docker.com/install/linux/docker-ce/centos/#install-using-the-repository" class="uri">https://docs.docker.com/install/linux/docker-ce/centos/#install-using-the-repository</a></p>
+<p>リポジトリの追加方法を調べるのがめんどくさくなってしまって、ここは yum でリポジトリ追加してしまった。 反省しましょう。</p>
+<p>あとは docker グループにユーザー追加したりした。下記を見た。</p>
+<p><a href="https://qiita.com/inakadegaebal/items/be9fecce813cebec5986" class="uri">https://qiita.com/inakadegaebal/items/be9fecce813cebec5986</a></p>
+<p>ついでにDocker Composeも入れる。</p>
+<p><a href="https://docs.docker.com/compose/install/#install-compose" class="uri">https://docs.docker.com/compose/install/#install-compose</a></p>
+<h2 id="_他に参考にしたところとか_2">他に参考にしたところとか</h2>
+<ul>
+<li><p>Dockerの不要なコンテナ・イメージを一括削除する方法</p>
+<ul>
+<li><p><a href="https://suin.io/537" class="uri">https://suin.io/537</a></p></li>
+<li><p>テストで作ったhello, worldのやつとか消すときに使った</p></li>
+</ul></li>
+</ul>
+<h2 id="_一旦の感想">一旦の感想</h2>
+<p>色々入れてビルドしていくだけでも結構楽しいなってなってしまってヤバイ。まだ何もできていないんですが… 。（Dockerで開発環境をまとめるとか、そういうのもやっていかないといけないんだよね、これから）</p>
+<p>話が長くなってしまうので、ここで一旦切るけど、実際に手で色々入れてみるのは、トラブったときに何が違うんだろう 、あっここだ！みたいな発見を延々としていき、学びがあった。</p>
+<p>続きはDocker入れようとしてうまくいかない話とか、Shell入れる話とかGcc入れてみましたみたいな話が続くので、翌日以降に書いていこうと思います</p>
+<p>VPSでいろいろするの楽しいなーってなったので、これからもちょいちょいいじっていこうかな。なにかうまく作れたら公開できるといいなあとかもある。</p>
+<p>ひとまずはPHPで遊びたいなと思っているのでLaravelでもいれて遊ぼうかなと思っていたので、頑張ろう。</p>

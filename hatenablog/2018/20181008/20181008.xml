@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <date>2018-10-09</date>
+</articleinfo>
+<section id="_conohaと戯れてみる">
+<title>Conohaと戯れてみる</title>
+<simpara>仕事ではサーバーサイドのエンジニアとして働いているが、普段は完全に構築されて切った環境でぬくぬくと開発していることもあり、OS並びにミドルウェア、そしてWebAPIを構成する技術要素全般についてもう少し理解を深めるべきだと思った。</simpara>
+<simpara>そこでVPSでも借りて遊んでみることにした。</simpara>
+<simpara>選択肢としてはAWSとか、GCPとかあったけど、なんとなくConohaにした。キャラクターが可愛いっていうのもあるけど、普段自分が開発する範囲では、そのへんにある開発マシンをいじっていたりすることも多いので、その環境に近い感じにしておいた。</simpara>
+<simpara>物理マシンのサーバーを用意してやるのも選択肢ではあったけど、正直直近少しいじって見るだけだとサーバー用になにか買うのもコスト的にもったいないなとは思っていて、勉強するにしてもどっか借りる気ではいた。</simpara>
+<simpara>次に触るとしたらAWSかなーとは思う。でもEC2触るだけだと味気ないので、何かと組み合わせられないと考えにくいかなと。</simpara>
+<simpara>暇があったら物理的なサーバー立ててなんかするのもいいかなーとは思うけど、その頃にはもっとVPSでやれるサーバーが一般的になってそうだなーとか。</simpara>
+<section id="_契約周りとか">
+<title>契約周りとか</title>
+<simpara>公式ページに沿ってセットアップ。メモリ1GB、ディスク50GBのやつにした。月額980円ってすごいな？
+OSはCentOS7系の最新版。</simpara>
+<simpara>ディスク意外とついてくるなという印象。</simpara>
+<simpara><ulink url="https://www.conoha.jp/guide/study-02.php">https://www.conoha.jp/guide/study-02.php</ulink></simpara>
+<simpara>とはいえ、若干インターフェースは変わってるのでよく読んだほうが良さそうかも。</simpara>
+</section>
+<section id="_ssh_confする">
+<title>SSH Confする</title>
+<simpara>この辺全く知らなかったので、勉強になった。</simpara>
+<simpara>これを参考にした。というかほぼこれ。</simpara>
+<simpara><ulink url="https://qiita.com/ongaeshi/items/bb17ebfbd4d22057c8fd">https://qiita.com/ongaeshi/items/bb17ebfbd4d22057c8fd</ulink></simpara>
+<simpara>やることとしてはユーザーを作って、 <literal>/etc/ssh/sshd_config</literal> を編集していく。
+PasswordAuthとか、Challengeとかを無効にしつつ、SSH認証するようにする。</simpara>
+<simpara>鍵を作ったり受け渡したりしてログインするところは普段、よしなに登録してもらっているので理解があんまりできておらず
+、新鮮でした。</simpara>
+<section id="_他に参考にしたところとか">
+<title>他に参考にしたところとか</title>
+<simpara>大体 SSH Config系統。</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="http://tkm-71.hatenablog.com/entry/2016/03/20/153825">http://tkm-71.hatenablog.com/entry/2016/03/20/153825</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="https://gentoo.reichsarchiv.jp/item/17">https://gentoo.reichsarchiv.jp/item/17</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="https://dogmap.jp/2011/10/27/ssh_config/">https://dogmap.jp/2011/10/27/ssh_config/</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="http://www.kmiura.net/archives/8619663.html">http://www.kmiura.net/archives/8619663.html</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
+<section id="_ndf_を導入する">
+<title>ndf を導入する</title>
+<simpara>yum に変わる新しいパッケージマネージャーとして dnf というものが存在する。これを入れていく。
+参考にした記事はこちら。</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="http://www.trapping.xyz/2018/01/centos7dnf.html">http://www.trapping.xyz/2018/01/centos7dnf.html</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="https://qiita.com/skanno/items/7ac41c7e6a12bcfcfed3">https://qiita.com/skanno/items/7ac41c7e6a12bcfcfed3</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>ちなみに <literal>yum install dnf</literal> で入らなかったので wget でパッケージを取ってきてインストールした。</simpara>
+<simpara>使い勝手はそんなに変わらないような気がする。</simpara>
+</section>
+<section id="_git_を導入する">
+<title>git を導入する</title>
+<simpara>これは流石に常識として理解していたが <literal>yum</literal> や <literal>apt</literal> ではいる git は本当にバージョンが古い。なので、ビルドする。</simpara>
+<simpara>公式のドキュメントだけでOK。てか公式のドキュメント、 dnf でしか書いてない。はい、という感じだ。</simpara>
+<simpara><ulink url="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</ulink></simpara>
+<simpara>（これは仕事とかでも何回かビルドしたことがあったので、楽勝だった…）</simpara>
+<simpara>ちなみにCentOSは <literal>db2x_docbook2texi</literal> のシンボリックリンクをはらないとだめです。</simpara>
+</section>
+<section id="_dockerを入れる">
+<title>Dockerを入れる</title>
+<simpara>公式ドキュメントに従う。</simpara>
+<simpara><ulink url="https://docs.docker.com/install/linux/docker-ce/centos/#install-using-the-repository">https://docs.docker.com/install/linux/docker-ce/centos/#install-using-the-repository</ulink></simpara>
+<simpara>リポジトリの追加方法を調べるのがめんどくさくなってしまって、ここは yum でリポジトリ追加してしまった。
+反省しましょう。</simpara>
+<simpara>あとは docker グループにユーザー追加したりした。下記を見た。</simpara>
+<simpara><ulink url="https://qiita.com/inakadegaebal/items/be9fecce813cebec5986">https://qiita.com/inakadegaebal/items/be9fecce813cebec5986</ulink></simpara>
+<simpara>ついでにDocker Composeも入れる。</simpara>
+<simpara><ulink url="https://docs.docker.com/compose/install/#install-compose">https://docs.docker.com/compose/install/#install-compose</ulink></simpara>
+</section>
+<section id="_他に参考にしたところとか_2">
+<title>他に参考にしたところとか</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Dockerの不要なコンテナ・イメージを一括削除する方法
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="https://suin.io/537">https://suin.io/537</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+テストで作ったhello, worldのやつとか消すときに使った
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_一旦の感想">
+<title>一旦の感想</title>
+<simpara>色々入れてビルドしていくだけでも結構楽しいなってなってしまってヤバイ。まだ何もできていないんですが…
+。（Dockerで開発環境をまとめるとか、そういうのもやっていかないといけないんだよね、これから）</simpara>
+<simpara>話が長くなってしまうので、ここで一旦切るけど、実際に手で色々入れてみるのは、トラブったときに何が違うんだろう
+、あっここだ！みたいな発見を延々としていき、学びがあった。</simpara>
+<simpara>続きはDocker入れようとしてうまくいかない話とか、Shell入れる話とかGcc入れてみましたみたいな話が続くので、翌日以降に書いていこうと思います</simpara>
+<simpara>VPSでいろいろするの楽しいなーってなったので、これからもちょいちょいいじっていこうかな。なにかうまく作れたら公開できるといいなあとかもある。</simpara>
+<simpara>ひとまずはPHPで遊びたいなと思っているのでLaravelでもいれて遊ぼうかなと思っていたので、頑張ろう。</simpara>
+</section>
+</section>
+</article>
